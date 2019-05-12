@@ -123,6 +123,31 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        // firstEntries and secondEntries are variables to hold
+        // the value of the entries after first loadFeed
+        // and the value of the entries after the second loadFeed
+        let firstEntries, secondEntries;
+        // we sould call loadFeed twice and make sure it has been completed
+        // and assign the first call result to firstEntries
+        // and the second call result to secondEntries.
+        beforeEach(function (done) {
+            let feedDiv = document.querySelector('.feed');
+            feedDiv.innerText = '';
+            loadFeed(0, function () {
+                firstEntries = document.querySelectorAll('.entry');
+                done();
+            });
+            loadFeed(1, function () {
+                secondEntries = document.querySelectorAll('.entry');
+                done();
+            });
+        });
+        // so in order to decide if the content of the feeds are changed
+        // we need to compare between firstEntries and secondEntries
+        // they should not be the same
+        it("Ensure the content actually changed after a new loadFeed", function () {
+            expect(firstEntries).not.toBe(secondEntries);
+        });
     });
 
 }());
