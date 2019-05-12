@@ -96,6 +96,24 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        // here before we check if there is at least a single entry
+        // after we call the loadFeed() function
+        // we should to have some way told us if loadFeed() has completed
+        // so we pass done() to each function before they invoke
+        // so that when the function loadFeed() completed done() will returned
+        beforeEach(function (done) {
+            loadFeed(0, function () {
+                done();
+            });
+        });
+        // before the loadFeed() is invoked there is no element 
+        // has the class 'entry' in it
+        // so we need to see if there is an element with that class
+        // after the loadFeed() is invoked
+        it("define if there is at least one entry in the container", function () {
+            let entry = document.querySelector('.entry');
+            expect(entry).toBeDefined();
+        });
     });
 
 
