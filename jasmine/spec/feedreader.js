@@ -59,7 +59,14 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        // the menu is hidden using class called 'menu-hidden'.
+        // it been assigned to the body element.
+        // so we need to check if we can found it in the class list of the body.
+        it("Elements should be hidden by default", function () {
+            expect(document.body).toHaveClass('menu-hidden');
+        });
 
+        
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
          * should have two expectations: does the menu display when
@@ -67,7 +74,7 @@ $(function() {
          */
     });
 
-    
+
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
