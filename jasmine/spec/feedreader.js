@@ -50,7 +50,7 @@ $(function() {
         // it been assigned to the body element.
         // so we need to check if we can found it in the class list of the body.
         it("Elements should be hidden by default", function () {
-            expect(document.body.classList[0]).toBe('menu-hidden');
+            expect(document.body.classList.contains('menu-hidden')).toBe(true);
         });
 
 
@@ -61,9 +61,9 @@ $(function() {
         // it should be there so that mean the menu is hidden.
         it("Visibility changed when pressed on menu icon", function () {
             menu.click();
-            expect(document.body.classList[0]).not.toBe('menu-hidden');
+            expect(document.body.classList.contains('menu-hidden')).toBe(false);
             menu.click();
-            expect(document.body.classList[0]).toBe('menu-hidden');
+            expect(document.body.classList.contains('menu-hidden')).toBe(true);
         });
     });
 
@@ -85,8 +85,8 @@ $(function() {
         // so we need to see if there is an element with that class
         // after the loadFeed() is invoked
         it("define if there is at least one entry in the container", function () {
-            let entry = document.querySelector('.feed .entry');
-            expect(entry).toBeDefined();
+            let entry = document.querySelectorAll('.feed .entry');
+            expect(entry.length).toBeGreaterThan(0);
         });
     });
 
